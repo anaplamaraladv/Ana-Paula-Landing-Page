@@ -59,6 +59,47 @@ a { text-decoration: none; color: inherit; }
   transform: translateY(0);
 }
 
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drawLine {
+  from { stroke-dashoffset: 400; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes drawPath {
+  from { stroke-dashoffset: 600; }
+  to { stroke-dashoffset: 0; }
+}
+
+.panel-frame {
+  animation: fadeUp 1s ease both;
+}
+
+.panel svg path,
+.panel svg line,
+.panel svg ellipse {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawPath 2.5s ease forwards;
+  animation-delay: 0.4s;
+}
+
+.panel svg .base-line {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawLine 1.5s ease forwards;
+  animation-delay: 2.2s;
+}
+
+.identity .divider:first-child { animation: fadeUp 0.6s ease 2.4s both; }
+.name { animation: fadeUp 0.7s ease 2.6s both; }
+.oab { animation: fadeUp 0.7s ease 2.8s both; }
+.areas-inline { animation: fadeUp 0.7s ease 3s both; }
+.identity .divider:last-child { animation: fadeUp 0.6s ease 3.2s both; }
+
 /* ── Painel do monograma ── */
 
 .panel-section {
@@ -318,7 +359,7 @@ a { text-decoration: none; color: inherit; }
   <div class="panel-section">
     <div class="panel-frame">
       <div class="panel">
-        <svg viewBox="0 0 500 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <filter id="deboss" x="-30%" y="-30%" width="160%" height="160%">
               <feDropShadow dx="0.45" dy="0.45" stdDeviation="0.35" flood-color="#2D2A28" flood-opacity="0.45"/>
@@ -358,6 +399,7 @@ a { text-decoration: none; color: inherit; }
               <path d="M150 20 L158 20" stroke="#B07A5A" stroke-width="1.7" stroke-linecap="round"/>
             </g>
           </g>
+          <line class="base-line" x1="50" y1="390" x2="450" y2="390" stroke="#B07A5A" stroke-width="1.2"/>
         </svg>
       </div>
     </div>

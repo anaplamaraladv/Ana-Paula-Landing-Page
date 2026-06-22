@@ -31,16 +31,27 @@ body {
   background: var(--offwhite);
   color: var(--graphite);
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 a { text-decoration: none; color: inherit; }
+
+.page {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /* ── Animações ── */
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .reveal.visible {
@@ -48,83 +59,112 @@ a { text-decoration: none; color: inherit; }
   transform: translateY(0);
 }
 
-/* ── Hero ── */
+/* ── Painel do monograma ── */
 
-.hero {
-  min-height: 100dvh;
+.panel-section {
+  width: 100%;
+  padding: 40px 20px 0;
+}
+
+.panel-frame {
+  width: 100%;
+  aspect-ratio: 1.6 / 1;
+  padding: 6px;
+  border: 0.5px solid rgba(176, 122, 90, 0.22);
+}
+
+.panel {
+  width: 100%;
+  height: 100%;
   background: var(--graphite);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 24px 40px;
-  position: relative;
+  overflow: visible;
 }
 
-.monogram {
-  width: 280px;
-  max-width: 70vw;
-}
-
-.monogram svg {
-  width: 100%;
+.panel svg {
+  width: 62%;
   height: auto;
   overflow: visible;
 }
 
-.hero-rule {
-  width: 60px;
-  height: 1px;
-  background: var(--bronze);
-  margin: 40px 0 32px;
-  opacity: 0.7;
+/* ── Identidade ── */
+
+.identity {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.hero-name {
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--champ);
+  margin: 28px 0;
+}
+
+.name {
   font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: clamp(24px, 6vw, 36px);
+  font-size: clamp(22px, 5.5vw, 28px);
   font-weight: 400;
-  letter-spacing: 0.16em;
-  color: var(--champ);
+  letter-spacing: 0.14em;
+  color: var(--graphite);
   text-transform: uppercase;
   text-align: center;
   line-height: 1.5;
 }
 
-.hero-sub {
-  font-size: clamp(12px, 3vw, 14px);
+.oab {
+  font-size: clamp(13px, 3.2vw, 14px);
   font-weight: 400;
-  letter-spacing: 0.16em;
-  color: var(--bronze);
+  letter-spacing: 0.14em;
+  color: var(--bronze-dk);
   text-transform: uppercase;
   margin-top: 12px;
   text-align: center;
 }
 
-.scroll-hint {
-  position: absolute;
-  bottom: 28px;
-  opacity: 0.3;
-  animation: float 2.5s ease-in-out infinite;
+.areas-inline {
+  font-size: clamp(12px, 3vw, 13px);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--bronze-dk);
+  text-transform: uppercase;
+  margin-top: 8px;
+  text-align: center;
+  opacity: 0.7;
 }
 
-.scroll-hint svg {
-  width: 20px;
-  height: 20px;
-}
+/* ── Sobre ── */
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
-}
-
-/* ── Seções ── */
-
-section {
-  padding: 80px 24px;
+.about {
+  padding: 0 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.about-text {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: clamp(17px, 4.2vw, 22px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--bronze-dk);
+  text-align: center;
+  max-width: 400px;
+  line-height: 1.7;
+}
+
+/* ── Áreas detalhadas ── */
+
+.areas-section {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .section-label {
@@ -133,47 +173,21 @@ section {
   letter-spacing: 0.3em;
   color: var(--bronze);
   text-transform: uppercase;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
-
-.section-divider {
-  width: 60px;
-  height: 1px;
-  background: var(--champ);
-  margin: 0 auto;
-}
-
-/* ── Sobre ── */
-
-.about-text {
-  font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: clamp(18px, 4.5vw, 24px);
-  font-weight: 400;
-  font-style: italic;
-  color: var(--bronze-dk);
-  text-align: center;
-  max-width: 480px;
-  line-height: 1.7;
-}
-
-/* ── Áreas ── */
 
 .areas-grid {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  max-width: 480px;
+  gap: 28px;
   width: 100%;
-  margin-top: 8px;
 }
 
-.area-item {
-  text-align: center;
-}
+.area-item { text-align: center; }
 
 .area-title {
   font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.1em;
   color: var(--graphite);
@@ -181,22 +195,25 @@ section {
 }
 
 .area-desc {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 300;
   color: var(--bronze-dk);
   margin-top: 6px;
   line-height: 1.6;
 }
 
-/* ── Contato ── */
+/* ── Botões ── */
 
-.contact-section {
-  background: var(--offwhite);
+.actions-section {
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .actions {
   width: 100%;
-  max-width: 420px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -237,6 +254,29 @@ section {
   flex-shrink: 0;
 }
 
+/* ── Footer ── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 20px 40px;
+  opacity: 0.35;
+}
+
+.footer svg {
+  width: 14px;
+  height: 14px;
+}
+
+.footer span {
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--graphite);
+}
+
 /* ── WhatsApp flutuante ── */
 
 .fab {
@@ -257,44 +297,14 @@ section {
 
 .fab:active { transform: scale(0.92); }
 
-.fab svg {
-  width: 26px;
-  height: 26px;
-}
-
-/* ── Footer ── */
-
-footer {
-  background: var(--graphite);
-  padding: 40px 24px;
-  text-align: center;
-}
-
-.footer-name {
-  font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  color: var(--champ);
-  text-transform: uppercase;
-}
-
-.footer-oab {
-  font-size: 10px;
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  color: var(--bronze);
-  text-transform: uppercase;
-  margin-top: 8px;
-}
+.fab svg { width: 26px; height: 26px; }
 
 /* ── Desktop ── */
 
 @media (min-width: 768px) {
   .areas-grid {
     flex-direction: row;
-    gap: 48px;
-    max-width: 640px;
+    gap: 40px;
   }
   .area-item { flex: 1; }
 }
@@ -302,125 +312,128 @@ footer {
 </head>
 <body>
 
-<!-- Hero -->
-<header class="hero">
-  <div class="monogram">
-    <svg viewBox="0 0 500 390" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="deboss" x="-30%" y="-30%" width="160%" height="160%">
-          <feDropShadow dx="0.45" dy="0.45" stdDeviation="0.35" flood-color="#2D2A28" flood-opacity="0.45"/>
-          <feDropShadow dx="-0.4" dy="-0.4" stdDeviation="0.3" flood-color="#FFFFFF" flood-opacity="0.18"/>
-        </filter>
-      </defs>
-      <g transform="translate(50, 80) scale(1.9)" filter="url(#deboss)">
-        <g transform="translate(42,84) scale(1.08) translate(-42,-84)">
-          <path d="M8 148 Q17 122 31 88 Q43 58 56 22" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <path d="M56 22 Q64 52 68 78 Q70 94 71 110" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <path d="M22 106 Q40 100 58 99 Q63 99 69 99" stroke="#E9DDD1" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-          <path d="M3 148 L19 148" stroke="#E9DDD1" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M67 114 L76 148" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <path d="M70 148 L82 148" stroke="#E9DDD1" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M52 20 L60 20" stroke="#E9DDD1" stroke-width="1.7" stroke-linecap="round"/>
-        </g>
-        <line x1="105" y1="67" x2="105" y2="148" stroke="#E9DDD1" stroke-width="1.5"/>
-        <path d="M94 148 L116 148" stroke="#E9DDD1" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M98 148 L98 155 L112 155 L112 148" stroke="#E9DDD1" stroke-width="1" fill="none"/>
-        <path d="M92 155 L118 155" stroke="#E9DDD1" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M54 56 Q80 70 105 56 Q130 70 156 56" stroke="#E9DDD1" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <ellipse cx="105" cy="56" rx="7" ry="7" fill="#B07A5A" stroke="#E9DDD1" stroke-width="1.4"/>
-        <ellipse cx="105" cy="56" rx="3" ry="3" fill="#2D2A28"/>
-        <line x1="54" y1="56" x2="45" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
-        <line x1="54" y1="56" x2="63" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
-        <path d="M40 90 Q54 98 68 90" stroke="#E9DDD1" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-        <line x1="156" y1="56" x2="147" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
-        <line x1="156" y1="56" x2="165" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
-        <path d="M142 90 Q156 98 170 90" stroke="#E9DDD1" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-        <g transform="translate(168,84) scale(1.08) translate(-168,-84)">
-          <path d="M134 114 Q135 94 137 78" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <path d="M137 78 Q140 58 144 46 Q148 32 154 22" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <path d="M154 22 Q162 52 172 88 Q184 122 202 148" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <path d="M141 106 Q156 100 173 106" stroke="#B07A5A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-          <path d="M128 148 L140 148" stroke="#B07A5A" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M196 148 L207 148" stroke="#B07A5A" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M150 20 L158 20" stroke="#B07A5A" stroke-width="1.7" stroke-linecap="round"/>
-        </g>
-      </g>
-    </svg>
+<div class="page">
+
+  <!-- Painel do monograma -->
+  <div class="panel-section">
+    <div class="panel-frame">
+      <div class="panel">
+        <svg viewBox="0 0 500 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="deboss" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0.45" dy="0.45" stdDeviation="0.35" flood-color="#2D2A28" flood-opacity="0.45"/>
+              <feDropShadow dx="-0.4" dy="-0.4" stdDeviation="0.3" flood-color="#FFFFFF" flood-opacity="0.18"/>
+            </filter>
+          </defs>
+          <g transform="translate(50, 80) scale(1.9)" filter="url(#deboss)">
+            <g transform="translate(42,84) scale(1.08) translate(-42,-84)">
+              <path d="M8 148 Q17 122 31 88 Q43 58 56 22" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <path d="M56 22 Q64 52 68 78 Q70 94 71 110" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <path d="M22 106 Q40 100 58 99 Q63 99 69 99" stroke="#E9DDD1" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+              <path d="M3 148 L19 148" stroke="#E9DDD1" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M67 114 L76 148" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <path d="M70 148 L82 148" stroke="#E9DDD1" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M52 20 L60 20" stroke="#E9DDD1" stroke-width="1.7" stroke-linecap="round"/>
+            </g>
+            <line x1="105" y1="67" x2="105" y2="148" stroke="#E9DDD1" stroke-width="1.5"/>
+            <path d="M94 148 L116 148" stroke="#E9DDD1" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M98 148 L98 155 L112 155 L112 148" stroke="#E9DDD1" stroke-width="1" fill="none"/>
+            <path d="M92 155 L118 155" stroke="#E9DDD1" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M54 56 Q80 70 105 56 Q130 70 156 56" stroke="#E9DDD1" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <ellipse cx="105" cy="56" rx="7" ry="7" fill="#B07A5A" stroke="#E9DDD1" stroke-width="1.4"/>
+            <ellipse cx="105" cy="56" rx="3" ry="3" fill="#2D2A28"/>
+            <line x1="54" y1="56" x2="45" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
+            <line x1="54" y1="56" x2="63" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
+            <path d="M40 90 Q54 98 68 90" stroke="#E9DDD1" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            <line x1="156" y1="56" x2="147" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
+            <line x1="156" y1="56" x2="165" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
+            <path d="M142 90 Q156 98 170 90" stroke="#E9DDD1" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            <g transform="translate(168,84) scale(1.08) translate(-168,-84)">
+              <path d="M134 114 Q135 94 137 78" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <path d="M137 78 Q140 58 144 46 Q148 32 154 22" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <path d="M154 22 Q162 52 172 88 Q184 122 202 148" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <path d="M141 106 Q156 100 173 106" stroke="#B07A5A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+              <path d="M128 148 L140 148" stroke="#B07A5A" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M196 148 L207 148" stroke="#B07A5A" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M150 20 L158 20" stroke="#B07A5A" stroke-width="1.7" stroke-linecap="round"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
   </div>
 
-  <div class="hero-rule"></div>
-  <h1 class="hero-name">Ana Paula Amaral</h1>
-  <p class="hero-sub">Advogada · OAB/SP 397.623</p>
-
-  <div class="scroll-hint">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#E9DDD1" stroke-width="1.5" stroke-linecap="round">
-      <path d="M12 5v14M5 12l7 7 7-7"/>
-    </svg>
+  <!-- Identidade -->
+  <div class="identity">
+    <div class="divider"></div>
+    <h1 class="name">Ana Paula Amaral</h1>
+    <p class="oab">Advogada · OAB/SP 397.623</p>
+    <p class="areas-inline">Administrativo · Cível · Trabalhista</p>
+    <div class="divider"></div>
   </div>
-</header>
 
-<!-- Sobre -->
-<section>
-  <div class="reveal">
+  <!-- Sobre -->
+  <div class="about reveal">
     <p class="about-text">Atuação jurídica estratégica com atendimento próximo e personalizado</p>
+    <div class="divider"></div>
   </div>
-</section>
 
-<div class="section-divider"></div>
+  <!-- Áreas -->
+  <div class="areas-section reveal">
+    <span class="section-label">Áreas de atuação</span>
+    <div class="areas-grid">
+      <div class="area-item">
+        <div class="area-title">Administrativo</div>
+        <p class="area-desc">Consultoria e defesa de direitos dos servidores públicos</p>
+      </div>
+      <div class="area-item">
+        <div class="area-title">Cível e Família</div>
+        <p class="area-desc">Contratos, responsabilidade civil e direito de família</p>
+      </div>
+      <div class="area-item">
+        <div class="area-title">Trabalhista</div>
+        <p class="area-desc">Relações de trabalho, reclamações e direitos do trabalhador</p>
+      </div>
+    </div>
+    <div class="divider"></div>
+  </div>
 
-<!-- Áreas -->
-<section>
-  <span class="section-label reveal">Áreas de atuação</span>
-  <div class="areas-grid">
-    <div class="area-item reveal">
-      <div class="area-title">Administrativo</div>
-      <p class="area-desc">Consultoria e defesa de direitos dos servidores públicos</p>
-    </div>
-    <div class="area-item reveal">
-      <div class="area-title">Cível e Família</div>
-      <p class="area-desc">Contratos, responsabilidade civil e direito de família</p>
-    </div>
-    <div class="area-item reveal">
-      <div class="area-title">Trabalhista</div>
-      <p class="area-desc">Relações de trabalho, reclamações e direitos do trabalhador</p>
+  <!-- Contato -->
+  <div class="actions-section reveal">
+    <span class="section-label">Contato</span>
+    <div class="actions">
+      <a href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico." class="btn btn-primary" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        WhatsApp
+      </a>
+      <a href="mailto:anapl.amaral@adv.oabsp.org.br" class="btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#B07A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="M22 7l-10 6L2 7"/>
+        </svg>
+        E-mail
+      </a>
+      <button class="btn" onclick="salvarContato()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#B07A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Salvar Contato
+      </button>
     </div>
   </div>
-</section>
 
-<div class="section-divider"></div>
-
-<!-- Contato -->
-<section class="contact-section">
-  <span class="section-label reveal">Contato</span>
-  <div class="actions reveal">
-    <a href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico." class="btn btn-primary" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-      </svg>
-      WhatsApp
-    </a>
-    <a href="mailto:anapl.amaral@adv.oabsp.org.br" class="btn" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#B07A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="4" width="20" height="16" rx="2"/>
-        <path d="M22 7l-10 6L2 7"/>
-      </svg>
-      E-mail
-    </a>
-    <button class="btn" onclick="salvarContato()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#B07A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-        <circle cx="12" cy="7" r="4"/>
-      </svg>
-      Salvar Contato
-    </button>
+  <!-- Footer -->
+  <div class="footer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#2D2A28" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 15l-2 5L9 9l11 4-5 2z"/>
+    </svg>
+    <span>Toque nos botões para interagir</span>
   </div>
-</section>
 
-<!-- Footer -->
-<footer>
-  <div class="footer-name">Ana Paula Amaral</div>
-  <div class="footer-oab">Advogada · OAB/SP 397.623</div>
-</footer>
+</div>
 
 <!-- WhatsApp flutuante -->
 <a href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico." class="fab" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -432,9 +445,7 @@ footer {
 <script>
 var observer = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
 }, { threshold: 0.15 });
 

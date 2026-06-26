@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<title>Ana Paula Amaral — Cartão Digital</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="APA Advogada">
+<meta name="theme-color" content="#2D2A28">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: #2D2A28;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card {
+    width: 100%;
+    max-width: 480px;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 95dvh;
+    object-fit: contain;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <img src="card.png" alt="Cartão Digital — Ana Paula Amaral, Advogada, OAB/SP 397.623">
+  </div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>

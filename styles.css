@@ -137,15 +137,50 @@ h1, h2, h3 {
   font-size: clamp(24px, 3.5vw, 32px);
   margin-bottom: 8px;
 }
-.secao .filete { width: 56px; height: 1px; background: var(--bronze); margin: 14px 0 28px; }
+.secao .filete {
+  width: 56px;
+  height: 1px;
+  background: var(--bronze);
+  margin: 14px 0 28px;
+  transform-origin: left center;
+  transition: transform .8s ease;
+}
+.secao .filete.pre-grow { transform: scaleX(0); }
+.secao .filete.pre-grow.visible { transform: scaleX(1); }
 
 .grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
 .card {
   background: var(--white);
   border: 1px solid var(--champagne);
   padding: 28px 26px;
+  transition: box-shadow .25s ease, border-color .25s ease;
+}
+.card:hover {
+  box-shadow: 0 10px 26px rgba(45, 42, 40, 0.09);
+  border-color: var(--bronze);
 }
 .secao-alt .card { border-color: #dccdbd; }
+
+/* Revelação suave ao rolar (cards e filetes) */
+.pre-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.pre-reveal.visible { opacity: 1; transform: translateY(0); }
+.grade .pre-reveal:nth-child(1) { transition-delay: 0s; }
+.grade .pre-reveal:nth-child(2) { transition-delay: .08s; }
+.grade .pre-reveal:nth-child(3) { transition-delay: .16s; }
+.grade .pre-reveal:nth-child(4) { transition-delay: .24s; }
+.grade .pre-reveal:nth-child(5) { transition-delay: .32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pre-reveal, .secao .filete.pre-grow {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 .card h3 { font-size: 21px; margin-bottom: 10px; color: var(--graphite); }
 .card p {
   font-size: 15px;

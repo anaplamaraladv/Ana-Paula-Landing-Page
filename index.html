@@ -3,523 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ana Paula Amaral — Advogada</title>
-<meta name="description" content="Advogada · OAB/SP 397.623 · Direito Administrativo, Cível e Trabalhista">
-<meta property="og:title" content="Ana Paula Amaral — Advogada">
-<meta property="og:description" content="OAB/SP 397.623 · Direito Administrativo, Cível e Trabalhista">
+<title>Ana Paula Amaral Advocacia | Direitos do professor e do servidor estadual de SP</title>
+<meta name="description" content="Advocacia com foco na carreira do professor da rede estadual paulista: análise de vida funcional, evolução funcional, quinquênio, sexta-parte e planejamento de aposentadoria. Atendimento online, de Auriflama/SP para toda a região.">
+<meta property="og:title" content="Ana Paula Amaral Advocacia | Direitos do professor e do servidor estadual de SP">
+<meta property="og:description" content="Advocacia com foco na carreira do professor da rede estadual paulista. Atendimento online, de Auriflama/SP para toda a região.">
 <meta property="og:image" content="https://www.anapaulaamaral.adv.br/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://www.anapaulaamaral.adv.br">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ana Paula Amaral — Advogada">
-<meta name="twitter:description" content="OAB/SP 397.623 · Administrativo · Cível e Família · Trabalhista">
+<meta name="twitter:title" content="Ana Paula Amaral Advocacia">
+<meta name="twitter:description" content="Direitos do professor e do servidor estadual de SP. Atendimento online.">
 <meta name="twitter:image" content="https://www.anapaulaamaral.adv.br/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --bronze: #B07A5A;
-  --bronze-dk: #8B5E3C;
-  --champ: #E9DDD1;
-  --offwhite: #F7F4EF;
-  --graphite: #2D2A28;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Montserrat', 'Arial', sans-serif;
-  background: var(--offwhite);
-  color: var(--graphite);
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-a { text-decoration: none; color: inherit; }
-
-.page {
-  width: 100%;
-  max-width: 640px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* ── Animações ── */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes drawLine {
-  from { stroke-dashoffset: 400; }
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes drawPath {
-  from { stroke-dashoffset: 600; }
-  to { stroke-dashoffset: 0; }
-}
-
-.panel-frame {
-  animation: fadeUp 1s ease both;
-}
-
-.panel svg path,
-.panel svg line,
-.panel svg ellipse {
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
-  animation: drawPath 2.8s ease-out forwards;
-  animation-delay: 0.2s;
-}
-
-.panel svg .base-line {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: drawLine 1s ease forwards;
-  animation-delay: 2.2s;
-}
-
-.identity .divider:first-child { animation: fadeUp 0.5s ease 0.4s both; }
-.name { animation: fadeUp 0.5s ease 0.8s both; }
-.oab { animation: fadeUp 0.5s ease 1.3s both; }
-.areas-inline { animation: fadeUp 0.5s ease 1.8s both; }
-.identity .divider:last-child { animation: fadeUp 0.5s ease 2.3s both; }
-
-/* ── Painel do monograma ── */
-
-.panel-section {
-  width: 100%;
-  padding: 40px 20px 0;
-}
-
-.panel-frame {
-  width: 100%;
-  aspect-ratio: 1.6 / 1;
-  padding: 6px;
-  border: 0.5px solid rgba(176, 122, 90, 0.22);
-}
-
-.panel {
-  width: 100%;
-  height: 100%;
-  background: var(--graphite);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-}
-
-.panel svg {
-  width: 62%;
-  height: auto;
-  overflow: visible;
-}
-
-/* ── Identidade ── */
-
-.identity {
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.divider {
-  width: 60px;
-  height: 1px;
-  background: var(--champ);
-  margin: 28px 0;
-}
-
-.name {
-  font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: clamp(22px, 5.5vw, 28px);
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  color: var(--graphite);
-  text-transform: uppercase;
-  text-align: center;
-  line-height: 1.5;
-}
-
-.oab {
-  font-size: clamp(13px, 3.2vw, 14px);
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  color: var(--bronze-dk);
-  text-transform: uppercase;
-  margin-top: 12px;
-  text-align: center;
-}
-
-.areas-inline {
-  font-size: clamp(12px, 3vw, 13px);
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  color: var(--bronze-dk);
-  text-transform: uppercase;
-  margin-top: 8px;
-  text-align: center;
-  opacity: 0.7;
-}
-
-/* ── Sobre ── */
-
-.about {
-  padding: 0 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.about-text {
-  font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: clamp(17px, 4.2vw, 22px);
-  font-weight: 400;
-  font-style: italic;
-  color: var(--bronze-dk);
-  text-align: center;
-  max-width: 400px;
-  line-height: 1.7;
-}
-
-/* ── Áreas detalhadas ── */
-
-.areas-section {
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.section-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  color: var(--bronze);
-  text-transform: uppercase;
-  margin-bottom: 28px;
-}
-
-.areas-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  width: 100%;
-}
-
-.area-item { text-align: center; }
-
-.area-title {
-  font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  color: var(--graphite);
-  text-transform: uppercase;
-}
-
-.area-desc {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--bronze-dk);
-  margin-top: 6px;
-  line-height: 1.6;
-}
-
-/* ── Botões ── */
-
-.actions-section {
-  padding: 0 20px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.actions {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 14px;
-  width: 100%;
-  padding: 18px 28px;
-  background: var(--graphite);
-  border: none;
-  cursor: pointer;
-  color: var(--champ);
-  font-family: 'Montserrat', 'Arial', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  transition: opacity 0.2s;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.btn:active { opacity: 0.85; }
-
-.btn-primary {
-  background: var(--bronze);
-  color: #fff;
-}
-
-.btn-primary svg { stroke: #fff; }
-
-.btn svg {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-
-/* ── Footer ── */
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 32px 20px 40px;
-  opacity: 0.35;
-}
-
-.footer svg {
-  width: 14px;
-  height: 14px;
-}
-
-.footer span {
-  font-size: 9px;
-  font-weight: 300;
-  letter-spacing: 0.06em;
-  color: var(--graphite);
-}
-
-/* ── WhatsApp flutuante ── */
-
-.fab {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 56px;
-  height: 56px;
-  background: var(--bronze);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 16px rgba(45, 42, 40, 0.25);
-  z-index: 100;
-  transition: transform 0.2s;
-}
-
-.fab:active { transform: scale(0.92); }
-
-.fab svg { width: 26px; height: 26px; }
-
-/* ── Desktop ── */
-
-@media (min-width: 768px) {
-  .areas-grid {
-    flex-direction: row;
-    gap: 40px;
-  }
-  .area-item { flex: 1; }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="page">
-
-  <!-- Painel do monograma -->
-  <div class="panel-section">
-    <div class="panel-frame">
-      <div class="panel">
-        <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="deboss" x="-30%" y="-30%" width="160%" height="160%">
-              <feDropShadow dx="0.45" dy="0.45" stdDeviation="0.35" flood-color="#2D2A28" flood-opacity="0.45"/>
-              <feDropShadow dx="-0.4" dy="-0.4" stdDeviation="0.3" flood-color="#FFFFFF" flood-opacity="0.18"/>
-            </filter>
-          </defs>
-          <g transform="translate(50, 80) scale(1.9)" filter="url(#deboss)">
-            <g transform="translate(42,84) scale(1.08) translate(-42,-84)">
-              <path d="M8 148 Q17 122 31 88 Q43 58 56 22" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-              <path d="M56 22 Q64 52 68 78 Q70 94 71 110" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-              <path d="M22 106 Q40 100 58 99 Q63 99 69 99" stroke="#E9DDD1" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-              <path d="M3 148 L19 148" stroke="#E9DDD1" stroke-width="2.6" stroke-linecap="round"/>
-              <path d="M67 114 L76 148" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-              <path d="M70 148 L82 148" stroke="#E9DDD1" stroke-width="2.6" stroke-linecap="round"/>
-              <path d="M52 20 L60 20" stroke="#E9DDD1" stroke-width="1.7" stroke-linecap="round"/>
-            </g>
-            <line x1="105" y1="67" x2="105" y2="148" stroke="#E9DDD1" stroke-width="1.5"/>
-            <path d="M94 148 L116 148" stroke="#E9DDD1" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M98 148 L98 155 L112 155 L112 148" stroke="#E9DDD1" stroke-width="1" fill="none"/>
-            <path d="M92 155 L118 155" stroke="#E9DDD1" stroke-width="1.4" stroke-linecap="round"/>
-            <path d="M54 56 Q80 70 105 56 Q130 70 156 56" stroke="#E9DDD1" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-            <ellipse cx="105" cy="56" rx="7" ry="7" fill="#B07A5A" stroke="#E9DDD1" stroke-width="1.4"/>
-            <ellipse cx="105" cy="56" rx="3" ry="3" fill="#2D2A28"/>
-            <line x1="54" y1="56" x2="45" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
-            <line x1="54" y1="56" x2="63" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
-            <path d="M40 90 Q54 98 68 90" stroke="#E9DDD1" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-            <line x1="156" y1="56" x2="147" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
-            <line x1="156" y1="56" x2="165" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
-            <path d="M142 90 Q156 98 170 90" stroke="#E9DDD1" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-            <g transform="translate(168,84) scale(1.08) translate(-168,-84)">
-              <path d="M134 114 Q135 94 137 78" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-              <path d="M137 78 Q140 58 144 46 Q148 32 154 22" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-              <path d="M154 22 Q162 52 172 88 Q184 122 202 148" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-              <path d="M141 106 Q156 100 173 106" stroke="#B07A5A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-              <path d="M128 148 L140 148" stroke="#B07A5A" stroke-width="2.6" stroke-linecap="round"/>
-              <path d="M196 148 L207 148" stroke="#B07A5A" stroke-width="2.6" stroke-linecap="round"/>
-              <path d="M150 20 L158 20" stroke="#B07A5A" stroke-width="1.7" stroke-linecap="round"/>
-            </g>
-          </g>
-          <line class="base-line" x1="50" y1="390" x2="450" y2="390" stroke="#B07A5A" stroke-width="1.2"/>
-        </svg>
-      </div>
-    </div>
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="monograma.svg" alt="Monograma APA, balança da justiça"></span>
+      <span class="brand-text">Ana Paula Amaral<small>Advocacia · OAB/SP 397.623</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html" class="ativo">Início</a>
+      <a href="atuacao.html">Atuação</a>
+      <a href="blog.html">Blog</a>
+      <a href="contato.html">Contato</a>
+    </nav>
   </div>
+</header>
 
-  <!-- Identidade -->
-  <div class="identity">
-    <div class="divider"></div>
-    <h1 class="name">Ana Paula Amaral</h1>
-    <p class="oab">Advogada · OAB/SP 397.623</p>
-    <p class="areas-inline">Administrativo · Cível · Trabalhista</p>
-    <div class="divider"></div>
-  </div>
-
-  <!-- Contato -->
-  <div class="actions-section reveal">
-    <span class="section-label">Contato</span>
-    <div class="actions">
-      <a href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico." class="btn btn-primary" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        </svg>
-        WhatsApp
-      </a>
-      <a href="mailto:anapl.amaral@adv.oabsp.org.br" class="btn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#B07A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="4" width="20" height="16" rx="2"/>
-          <path d="M22 7l-10 6L2 7"/>
-        </svg>
-        E-mail
-      </a>
-      <button class="btn" onclick="salvarContato()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#B07A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-        Salvar Contato
-      </button>
-    </div>
-  </div>
-
-  <!-- Sobre -->
-  <div class="about reveal">
-    <div class="divider"></div>
-    <p class="about-text">Atuação jurídica estratégica com atendimento próximo e personalizado</p>
-    <div class="divider"></div>
-  </div>
-
-  <!-- Áreas detalhadas -->
-  <div class="areas-section reveal">
-    <span class="section-label">Áreas de atuação</span>
-    <div class="areas-grid">
-      <div class="area-item">
-        <div class="area-title">Administrativo</div>
-        <p class="area-desc">Consultoria e defesa de direitos dos servidores públicos</p>
-      </div>
-      <div class="area-item">
-        <div class="area-title">Cível e Família</div>
-        <p class="area-desc">Contratos, responsabilidade civil e direito de família</p>
-      </div>
-      <div class="area-item">
-        <div class="area-title">Trabalhista</div>
-        <p class="area-desc">Relações de trabalho, reclamações e direitos do trabalhador</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#2D2A28" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M15 15l-2 5L9 9l11 4-5 2z"/>
+<section class="hero">
+  <div class="monogram" aria-hidden="true">
+    <!-- Fonte canônica: Identidade_Visual/monograma-sem-bico-caneta.svg -->
+    <svg viewBox="40 105 420 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="debossHero" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0.45" dy="0.45" stdDeviation="0.35" flood-color="#2D2A28" flood-opacity="0.45"/>
+          <feDropShadow dx="-0.4" dy="-0.4" stdDeviation="0.3" flood-color="#FFFFFF" flood-opacity="0.18"/>
+        </filter>
+      </defs>
+      <g transform="translate(50, 80) scale(1.9)" filter="url(#debossHero)">
+        <g transform="translate(42,84) scale(1.08) translate(-42,-84)">
+          <path d="M8 148 Q17 122 31 88 Q43 58 56 22" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M56 22 Q64 52 68 78 Q70 94 71 110" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M22 106 Q40 100 58 99 Q63 99 69 99" stroke="#E9DDD1" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M3 148 L19 148" stroke="#E9DDD1" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M67 114 L76 148" stroke="#E9DDD1" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M70 148 L82 148" stroke="#E9DDD1" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M52 20 L60 20" stroke="#E9DDD1" stroke-width="1.7" stroke-linecap="round"/>
+        </g>
+        <line x1="105" y1="67" x2="105" y2="148" stroke="#E9DDD1" stroke-width="1.5"/>
+        <path d="M94 148 L116 148" stroke="#E9DDD1" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M98 148 L98 155 L112 155 L112 148" stroke="#E9DDD1" stroke-width="1" fill="none"/>
+        <path d="M92 155 L118 155" stroke="#E9DDD1" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M54 56 Q80 70 105 56 Q130 70 156 56" stroke="#E9DDD1" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <ellipse cx="105" cy="56" rx="7" ry="7" fill="#B07A5A" stroke="#E9DDD1" stroke-width="1.4"/>
+        <ellipse cx="105" cy="56" rx="3" ry="3" fill="#2D2A28"/>
+        <line x1="54" y1="56" x2="45" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
+        <line x1="54" y1="56" x2="63" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
+        <path d="M40 90 Q54 98 68 90" stroke="#E9DDD1" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <line x1="156" y1="56" x2="147" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
+        <line x1="156" y1="56" x2="165" y2="90" stroke="#B07A5A" stroke-width="1.15" stroke-linecap="round"/>
+        <path d="M142 90 Q156 98 170 90" stroke="#E9DDD1" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <g transform="translate(168,84) scale(1.08) translate(-168,-84)">
+          <path d="M134 114 Q135 94 137 78" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M137 78 Q140 58 144 46 Q148 32 154 22" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M154 22 Q162 52 172 88 Q184 122 202 148" stroke="#B07A5A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M141 106 Q156 100 173 106" stroke="#B07A5A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M128 148 L140 148" stroke="#B07A5A" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M196 148 L207 148" stroke="#B07A5A" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M150 20 L158 20" stroke="#B07A5A" stroke-width="1.7" stroke-linecap="round"/>
+        </g>
+      </g>
+      <line x1="50" y1="390" x2="450" y2="390" stroke="#B07A5A" stroke-width="1.2"/>
     </svg>
-    <span>Toque nos botões para interagir</span>
   </div>
+  <div class="hero-rule"></div>
+  <h1>Advocacia com foco na carreira<br>do professor da rede estadual</h1>
+  <p class="oab">Auriflama · SP · Atendimento online para toda a região</p>
+  <p class="lema">Análise de vida funcional, evolução na carreira, adicionais por tempo de serviço e planejamento de aposentadoria, explicados na linguagem de quem vive a rede.</p>
+  <p style="margin-top:36px"><a class="botao botao-claro" href="contato.html">Agende uma análise da sua vida funcional</a></p>
+</section>
 
-</div>
+<section class="secao">
+  <div class="container">
+    <h2>Como posso ajudar</h2>
+    <div class="filete"></div>
+    <div class="grade">
+      <div class="card">
+        <h3>Análise de vida funcional</h3>
+        <p>Revisão de faixa e nível, títulos, tempo de serviço e verbas do holerite, para entender, com clareza, o que pode ser revisto na sua carreira.</p>
+      </div>
+      <div class="card">
+        <h3>Evolução funcional</h3>
+        <p>Orientação sobre enquadramento por via acadêmica e não acadêmica na carreira do magistério paulista, conforme a sua situação funcional.</p>
+      </div>
+      <div class="card">
+        <h3>Adicionais e verbas do magistério</h3>
+        <p>Quinquênio, sexta-parte, carga suplementar, GDPI e bônus: o que cada verba significa e quando vale a pena uma análise individual.</p>
+      </div>
+      <div class="card">
+        <h3>Aposentadoria do servidor</h3>
+        <p>Planejamento previdenciário do servidor estadual (SPPREV): tempo, regras e o momento certo de decidir.</p>
+      </div>
+      <div class="card">
+        <h3>Inventários e sucessões</h3>
+        <p>Condução de inventários judiciais e extrajudiciais e planejamento sucessório para famílias da região.</p>
+      </div>
+      <div class="card">
+        <h3>Atendimento online</h3>
+        <p>Atendimento 100% online, de Auriflama para toda a região: Jales, Fernandópolis, Votuporanga, São José do Rio Preto e demais cidades do noroeste paulista. Videochamada e WhatsApp, em horários que respeitam a rotina da sala de aula.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- WhatsApp flutuante -->
-<a href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico." class="fab" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+<section class="secao secao-alt">
+  <div class="container">
+    <h2>Do blog</h2>
+    <div class="filete"></div>
+    <div class="grade">
+      <div class="card">
+        <h3>Abono do piso no holerite: por que essa verba está nos tribunais</h3>
+        <p>Você recebe a rubrica "Piso Sal. Docente" (Lei Federal 11.738/2008)? Entenda o que é o abono complementar e o que está em discussão sobre o cálculo de outras verbas.</p>
+        <a class="leia" href="blog/abono-complementar-piso.html">Ler artigo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Ana Paula Amaral de Oliveira · Advocacia</p>
+    <p class="oab">OAB/SP 397.623</p>
+    <div class="canais">
+      <a href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico.">WhatsApp</a>
+      <a href="mailto:anapl.amaral@adv.oabsp.org.br">E-mail</a>
+      <a href="https://anapaulaamaral.adv.br">anapaulaamaral.adv.br</a>
+    </div>
+  </div>
+</footer>
+
+<a class="whats-flutuante" href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico." aria-label="Falar pelo WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#E9DDD1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
   </svg>
 </a>
-
-<script>
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.reveal').forEach(function(el) {
-  observer.observe(el);
-});
-
-function salvarContato() {
-  var vcard = [
-    'BEGIN:VCARD',
-    'VERSION:3.0',
-    'N:Oliveira;Ana Paula Amaral de;;;',
-    'FN:Ana Paula Amaral de Oliveira',
-    'TITLE:Advogada — OAB/SP 397.623',
-    'TEL;TYPE=CELL:+5517997452389',
-    'EMAIL:anapl.amaral@adv.oabsp.org.br',
-    'END:VCARD'
-  ].join('\r\n');
-  var a = document.createElement('a');
-  a.href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcard);
-  a.download = 'ana-paula-amaral.vcf';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-</script>
 
 </body>
 </html>

@@ -42,6 +42,8 @@
     text-decoration: underline; text-underline-offset: 3px;
   }
   .botao-limpar:hover { color: var(--bronze); }
+  ::selection { background: var(--bronze); color: #fff; }
+  #nascimento, #ingresso { font-variant-numeric: tabular-nums; letter-spacing: .03em; }
 </style>
 </head>
 <body>
@@ -56,6 +58,7 @@
       <a href="index.html">Início</a>
       <a href="atuacao.html">Atuação</a>
       <a href="simulador.html" class="ativo">Simulador</a>
+      <a href="descongela.html">Descongela</a>
       <a href="blog.html">Blog</a>
       <a href="contato.html">Contato</a>
     </nav>
@@ -90,11 +93,11 @@
       <div class="sim-grid">
         <div>
           <label for="nascimento">Data de nascimento</label>
-          <input type="date" id="nascimento">
+          <input type="text" id="nascimento" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" autocomplete="off">
         </div>
         <div>
           <label for="ingresso">Ingresso no cargo efetivo</label>
-          <input type="date" id="ingresso">
+          <input type="text" id="ingresso" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" autocomplete="off">
         </div>
       </div>
       <div class="sim-acoes">
@@ -189,6 +192,24 @@ function ctaBlock(){
   return '<div class="cta-sim"><a class="botao" href="contato.html">Agende uma análise da sua vida funcional</a>'+
     '<p class="nota">A estimativa acima é educativa. Cada caso depende de detalhes que só aparecem na análise individual (tempo averbado, afastamentos, tipo de cargo).</p></div>';
 }
+function mascaraData(el){
+  if(!el) return;
+  el.addEventListener('input',function(){
+    var v=el.value.replace(/\D/g,'').slice(0,8), out=v;
+    if(v.length>4) out=v.slice(0,2)+'/'+v.slice(2,4)+'/'+v.slice(4);
+    else if(v.length>2) out=v.slice(0,2)+'/'+v.slice(2);
+    el.value=out;
+  });
+}
+function parseData(s){
+  var m=/^(\d{2})\/(\d{2})\/(\d{4})$/.exec((s||'').trim());
+  if(!m) return null;
+  var d=+m[1], mo=+m[2], y=+m[3];
+  if(mo<1||mo>12||d<1||d>31) return null;
+  var dt=new Date(m[3]+'-'+m[2]+'-'+m[1]);
+  if(isNaN(dt)||dt.getUTCFullYear()!==y||dt.getUTCMonth()!==mo-1||dt.getUTCDate()!==d) return null;
+  return dt;
+}
 function limpar(){
   document.getElementById('sexo').value='F';
   document.getElementById('carreira').value='professor';
@@ -201,11 +222,11 @@ function limpar(){
 function simular(){
   const sx=document.getElementById('sexo').value;
   const car=document.getElementById('carreira').value;
-  const ns=document.getElementById('nascimento').value;
-  const is=document.getElementById('ingresso').value;
+  const n=parseData(document.getElementById('nascimento').value);
+  const i=parseData(document.getElementById('ingresso').value);
   const out=document.getElementById('out');
-  if(!ns||!is){alert('Preencha a data de nascimento e a data de ingresso.');return;}
-  const n=new Date(ns),i=new Date(is),cfg=R[car];
+  if(!n||!i){alert('Preencha a data de nascimento e a data de ingresso no formato dd/mm/aaaa.');return;}
+  const cfg=R[car];
   let html='';
   if(i>=CORTE){
     const r=permanente(n,i,cfg,sx);
@@ -225,6 +246,8 @@ function simular(){
   out.style.display='block';
   out.scrollIntoView({behavior:'smooth',block:'start'});
 }
+mascaraData(document.getElementById('nascimento'));
+mascaraData(document.getElementById('ingresso'));
 </script>
 
 </body>

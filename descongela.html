@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador do Descongelamento | Ana Paula Amaral Advocacia</title>
+<meta name="description" content="Simulador educativo do Descongelamento (LC 226/2026) para o servidor estadual de SP: veja se o tempo congelado na pandemia pode ter gerado diferença em quinquênio, sexta-parte ou licença-prêmio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .sim-intro { max-width: 720px; color: var(--graphite); margin-bottom: 8px; }
+  .sim-aviso {
+    max-width: 760px; background: var(--champagne); border-left: 2px solid var(--bronze);
+    padding: 16px 20px; margin: 22px 0 30px; font-size: 13.5px; line-height: 1.65; color: #5a544d;
+  }
+  .sim-aviso b { color: var(--bronze-escuro); }
+  ::selection { background: var(--bronze); color: #fff; }
+
+  /* Wizard */
+  #wizard { max-width: 640px; }
+  .barra { height: 3px; background: var(--champagne); margin: 26px 0 4px; max-width: 640px; }
+  .barra > i { display: block; height: 100%; background: var(--bronze); width: 0; transition: width .3s; }
+  .passo { display: none; max-width: 640px; margin-top: 22px; }
+  .passo.ativo { display: block; }
+  .passo-num { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--bronze); font-weight: 600; margin-right: 8px; }
+  .passo h3 { display: inline; font-size: 17px; font-weight: 400; color: var(--graphite); }
+  .passo .hint { font-size: 13.5px; color: #6b6560; margin: 6px 0 16px; }
+  .opcoes { display: flex; flex-direction: column; gap: 9px; }
+  .opcao {
+    display: flex; align-items: center; gap: 12px; border: 1px solid var(--champagne);
+    background: var(--white); padding: 13px 16px; cursor: pointer; transition: border-color .15s, background .15s;
+  }
+  .opcao:hover { border-color: var(--bronze); }
+  .opcao.sel { border-color: var(--bronze); background: var(--offwhite); }
+  .opcao input { accent-color: var(--bronze); width: 16px; height: 16px; flex-shrink: 0; }
+  .opcao span { font-size: 15px; }
+  .faixa-linha { display: flex; align-items: center; gap: 16px; margin-top: 14px; }
+  .faixa-linha input[type=range] { flex: 1; accent-color: var(--bronze); }
+  .faixa-valor { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--bronze-escuro); min-width: 92px; text-align: right; }
+  .wizard-nav { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-top: 26px; max-width: 640px; }
+  #wiz-voltar { visibility: hidden; }
+
+  /* Resultado */
+  #resultado { display: none; max-width: 760px; margin-top: 36px; }
+  .selo {
+    display: inline-block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    padding: 5px 12px; margin-bottom: 12px; border: 1px solid;
+  }
+  .selo.ok { color: #3f6b3c; border-color: #bcd0b6; background: #eef3ec; }
+  .selo.mid { color: var(--bronze-escuro); border-color: #e0c8ac; background: #f4ecdf; }
+  .selo.low { color: #8a6a5a; border-color: #e0cfc6; background: #f1e8e3; }
+  .cenario { background: var(--white); border: 1px solid var(--champagne); border-left: 4px solid var(--bronze); padding: 20px 22px; margin-bottom: 16px; }
+  .cenario h3 { font-size: 21px; margin-bottom: 8px; color: var(--bronze-escuro); }
+  .cenario .linha { font-size: 15px; line-height: 1.6; margin: 4px 0; color: var(--graphite); }
+  .meses { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--bronze-escuro); line-height: 1; margin: 10px 0 2px; }
+  .meses small { font-size: 15px; font-family: 'Montserrat'; font-weight: 300; color: #6b6560; }
+  .est-note { font-size: 13px; color: #7a746c; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #d7ccbd; }
+  .roteiro { max-width: 760px; background: var(--champagne); border: 1px solid #dccdbd; padding: 20px 22px; margin-bottom: 16px; }
+  .roteiro h3 { font-size: 19px; margin-bottom: 6px; color: var(--graphite); }
+  .roteiro ol { counter-reset: p; list-style: none; padding: 0; margin: 10px 0 0; }
+  .roteiro li { counter-increment: p; position: relative; padding: 8px 0 8px 34px; border-top: 1px solid #dccdbd; font-size: 14.5px; }
+  .roteiro li:first-child { border-top: none; }
+  .roteiro li::before {
+    content: counter(p); position: absolute; left: 0; top: 6px; width: 22px; height: 22px; border: 1px solid var(--bronze);
+    color: var(--bronze-escuro); font-family: 'Cormorant Garamond', serif; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; font-size: 13px;
+  }
+  .cta-sim { margin: 26px 0 4px; }
+  .cta-sim .nota { font-size: 13px; color: #7a746c; margin-top: 12px; max-width: 620px; }
+  .cta-linha { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .sim-privacidade { font-size: 12.5px; color: #8a847c; margin-top: 30px; max-width: 760px; }
+  .botao-limpar {
+    background: none; border: none; padding: 6px 2px; cursor: pointer;
+    font-family: 'Montserrat', sans-serif; font-size: 14px; color: var(--bronze-escuro);
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .botao-limpar:hover { color: var(--bronze); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="monograma.svg" alt="Monograma APA, balança da justiça"></span>
+      <span class="brand-text">Ana Paula Amaral<small>Advocacia · OAB/SP 397.623</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">Início</a>
+      <a href="atuacao.html">Atuação</a>
+      <a href="simulador.html">Simulador</a>
+      <a href="descongela.html" class="ativo">Descongela</a>
+      <a href="blog.html">Blog</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="secao">
+  <div class="container">
+    <h2>Simulador do Descongelamento</h2>
+    <div class="filete pre-grow"></div>
+
+    <p class="sim-intro">A LC 226/2026 devolveu o tempo de serviço do servidor estadual de SP congelado na pandemia (28/05/2020 a 31/12/2021). Responda 5 perguntas para entender se o seu caso merece uma análise.</p>
+
+    <div class="sim-aviso">
+      <b>Antes de começar:</b> este é um material <b>educativo</b>, não um cálculo oficial nem uma consulta jurídica. Ele mostra uma triagem aproximada a partir apenas do que você informar. A situação real depende da sua vida funcional completa e só pode ser confirmada com análise individual. <b>A ferramenta não coleta nem envia nenhum dado: tudo é calculado no seu próprio navegador.</b>
+    </div>
+
+    <div id="wizard">
+      <div class="barra"><i id="barraFill"></i></div>
+
+      <div class="passo ativo" data-passo="1">
+        <div><span class="passo-num">1</span><h3>Você é servidor(a) da rede estadual de São Paulo?</h3></div>
+        <div class="opcoes" data-nome="servidor">
+          <label class="opcao"><input type="radio" name="servidor" value="sim"><span>Sim</span></label>
+          <label class="opcao"><input type="radio" name="servidor" value="nao"><span>Não</span></label>
+        </div>
+      </div>
+
+      <div class="passo" data-passo="2">
+        <div><span class="passo-num">2</span><h3>Você optou pelo subsídio (LC 1.374/2022)?</h3></div>
+        <p class="hint">Muda a base de cálculo, não o direito ao tempo. Se não lembra, tudo bem.</p>
+        <div class="opcoes" data-nome="subsidio">
+          <label class="opcao"><input type="radio" name="subsidio" value="nao"><span>Não, continuo na LC 836/97</span></label>
+          <label class="opcao"><input type="radio" name="subsidio" value="sim"><span>Sim, optei pelo subsídio</span></label>
+          <label class="opcao"><input type="radio" name="subsidio" value="naosei"><span>Não sei</span></label>
+        </div>
+      </div>
+
+      <div class="passo" data-passo="3">
+        <div><span class="passo-num">3</span><h3>Algum quinquênio, sexta-parte ou progressão seu passou por 2020-2021?</h3></div>
+        <p class="hint">Ex.: quinquênio concedido de 2021 a 2024, ou a sexta-parte que cai por volta de 2026-2027.</p>
+        <div class="opcoes" data-nome="adicional">
+          <label class="opcao"><input type="radio" name="adicional" value="sim"><span>Sim</span></label>
+          <label class="opcao"><input type="radio" name="adicional" value="naosei"><span>Não tenho certeza</span></label>
+          <label class="opcao"><input type="radio" name="adicional" value="nao"><span>Não, são todos anteriores a 2020</span></label>
+        </div>
+      </div>
+
+      <div class="passo" data-passo="4">
+        <div><span class="passo-num">4</span><h3>Você ficou afastado(a) por licença entre 28/05/2020 e 31/12/2021?</h3></div>
+        <p class="hint">Qualquer licença mais longa ou faltas nesse período. Decisivo: parte desse tempo não volta com o Descongela. A análise separa o que conta.</p>
+        <div class="opcoes" data-nome="licenca">
+          <label class="opcao"><input type="radio" name="licenca" value="nao"><span>Não</span></label>
+          <label class="opcao"><input type="radio" name="licenca" value="parcial"><span>Sim, parte do período</span></label>
+        </div>
+        <div id="faixaLicenca" class="faixa-linha" style="display:none">
+          <input type="range" id="licencaMeses" min="1" max="19" value="6">
+          <div class="faixa-valor"><span id="licencaVal">6</span> meses</div>
+        </div>
+      </div>
+
+      <div class="passo" data-passo="5">
+        <div><span class="passo-num">5</span><h3>Esse adicional já está sendo pago retroagindo a antes do congelamento?</h3></div>
+        <p class="hint">No holerite, veja a data de início dos efeitos: ela recuou, ou começou numa data recente?</p>
+        <div class="opcoes" data-nome="pagamento">
+          <label class="opcao"><input type="radio" name="pagamento" value="recente"><span>Começou numa data recente</span></label>
+          <label class="opcao"><input type="radio" name="pagamento" value="retro"><span>Já recuou para antes do congelamento</span></label>
+          <label class="opcao"><input type="radio" name="pagamento" value="naosei"><span>Não sei / ainda não concedido</span></label>
+        </div>
+      </div>
+
+      <div class="wizard-nav">
+        <button type="button" class="botao-limpar" id="wiz-voltar" onclick="voltarPasso()">Voltar</button>
+        <button type="button" class="botao" id="wiz-proximo" onclick="proximoPasso()" disabled>Próximo</button>
+      </div>
+    </div>
+
+    <div id="resultado">
+      <div class="cenario">
+        <span id="selo" class="selo">Resultado</span>
+        <h3 id="veredito"></h3>
+        <div id="mesesBox" style="display:none">
+          <div class="meses"><span id="mesesN">0</span> <small>meses de tempo congelado (estimativa)</small></div>
+          <div class="est-note">Teto ilustrativo, não o cálculo do seu caso, sujeito à prescrição de 5 anos.</div>
+        </div>
+        <p class="linha" id="explicacao"></p>
+        <p class="linha" id="notaSubsidio" style="display:none"></p>
+      </div>
+
+      <div class="roteiro" id="roteiroCard">
+        <h3>Como conferir seus dados no SED</h3>
+        <p class="hint" style="margin-bottom:0">Anote as datas dos seus quinquênios/sexta-parte e suas licenças de 2020-2021.</p>
+        <ol>
+          <li>Entre no <b>SED</b> e abra <b>Recursos Humanos</b></li>
+          <li><b>Funcional</b> &rarr; <b>Minha Funcional</b> &rarr; <b>Eventos</b></li>
+          <li>Em <b>Consultar</b>, veja <b>Quinquênio</b> e anote as datas de vigência</li>
+          <li>Em <b>Consultar</b>, veja <b>Licença</b> e anote os afastamentos e o total de dias</li>
+        </ol>
+      </div>
+
+      <div class="cta-sim">
+        <div class="cta-linha">
+          <a class="botao" href="contato.html">Agende uma análise da sua vida funcional</a>
+          <a class="botao botao-claro" href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20fiz%20o%20simulador%20do%20Descongela%20e%20quero%20uma%20an%C3%A1lise." target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+        <p class="nota">Eu analiso, caso a caso, se o Descongela gerou diferença em aberto para você, sem promessa de resultado. Se o caso se enquadrar, o escritório cuida da ação.</p>
+      </div>
+
+      <button type="button" class="botao-limpar" onclick="reiniciar()" style="margin-top:18px">Refazer</button>
+    </div>
+
+    <p class="sim-privacidade">Conteúdo informativo, nos termos do Provimento 205/2021 do CFOAB. Não constitui promessa de resultado nem parecer jurídico. Simulação processada localmente no seu navegador; nenhum dado é coletado ou armazenado. Base legal: LC 173/2020 (art. 8º, IX); LC 226/2026; Decreto estadual 70.396/2026; STF, Tema 1137.</p>
+  </div>
+</section>
+
+<div class="voltar-secao">
+  <div class="container">
+    <a href="index.html" class="voltar-site">← Voltar ao início</a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Ana Paula Amaral de Oliveira · Advocacia</p>
+    <p class="oab">OAB/SP 397.623</p>
+    <div class="canais">
+      <a href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico.">WhatsApp</a>
+      <a href="mailto:anapl.amaral@adv.oabsp.org.br">E-mail</a>
+      <a href="https://anapaulaamaral.adv.br">anapaulaamaral.adv.br</a>
+    </div>
+  </div>
+</footer>
+
+<a class="whats-flutuante" href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico." aria-label="Falar pelo WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#E9DDD1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+  </svg>
+</a>
+
+<script src="interacoes.js" defer></script>
+<script>
+(function(){
+  "use strict";
+  var TOTAL=5, passo=1;
+  var estado={servidor:null,subsidio:null,adicional:null,licenca:null,licencaMeses:6,pagamento:null};
+  var JANELA_MESES=19; // 28/05/2020 a 31/12/2021, cerca de 583 dias (19 meses)
+
+  function estimar(s){
+    if(s.servidor==='nao') return {nivel:'low',meses:null,codigo:'naoservidor'};
+    if(s.adicional==='nao') return {nivel:'low',meses:null,codigo:'semadicional'};
+    var lic=(s.licenca==='parcial')?Math.min(19,Math.max(0,s.licencaMeses)):0;
+    var liquido=Math.max(0,JANELA_MESES-lic);
+    if(liquido===0) return {nivel:'low',meses:0,codigo:'licenca_total'};
+    if(s.pagamento==='retro') return {nivel:'low',meses:0,codigo:'ja_pago'};
+    return {nivel:(s.adicional==='sim')?'ok':'mid',meses:liquido,codigo:'elegivel'};
+  }
+
+  var TXT={
+    naoservidor:{v:'Esta ferramenta é para servidores da rede estadual de SP.',
+      e:'Outros entes (município, União) têm regras e prazos próprios.'},
+    semadicional:{v:'Provavelmente não há o que revisar.',
+      e:'Seus adicionais são anteriores a 2020, então o congelamento não alcança seus marcos.'},
+    licenca_total:{v:'O atraso pode ter vindo da licença, não do congelamento.',
+      e:'Boa parte das licenças não conta como tempo de serviço e não volta com o Descongela. A chance de diferença em aberto é menor, mas a análise confirma exatamente o que foi congelado e o que não.'},
+    ja_pago:{v:'Provavelmente sem diferença em aberto.',
+      e:'Se os efeitos financeiros já recuaram para antes do congelamento, o tempo restaurado já foi considerado.'},
+    elegivel:{v:'Seu caso pode se enquadrar, vale uma análise.',
+      e:'Há tempo congelado que o Descongela restaura e que pode ter gerado diferença ainda não paga. A análise confirma quanto.'}
+  };
+
+  function mostrarResultado(){
+    var r=estimar(estado), t=TXT[r.codigo];
+    document.getElementById('wizard').style.display='none';
+    document.getElementById('resultado').style.display='block';
+    var selo=document.getElementById('selo');
+    selo.className='selo '+r.nivel;
+    selo.textContent = r.nivel==='ok'?'Possível enquadramento':(r.nivel==='mid'?'Merece verificação':'Pouco provável');
+    document.getElementById('veredito').textContent=t.v;
+    document.getElementById('explicacao').textContent=t.e;
+    var box=document.getElementById('mesesBox');
+    if(r.codigo==='elegivel'&&r.meses>0){
+      box.style.display='block';
+      document.getElementById('mesesN').textContent='até ~'+r.meses;
+    } else box.style.display='none';
+    document.getElementById('roteiroCard').style.display=
+      (r.nivel==='low'&&(r.codigo==='naoservidor'||r.codigo==='semadicional'))?'none':'block';
+    var nota=document.getElementById('notaSubsidio');
+    if(estado.subsidio==='sim'){
+      nota.style.display='block';
+      nota.innerHTML='<b>Nota:</b> com opção pelo subsídio, o tempo restaurado vale igual; muda só a base de cálculo.';
+    } else nota.style.display='none';
+  }
+
+  function nomeAtual(){ return ['servidor','subsidio','adicional','licenca','pagamento'][passo-1]; }
+  function validar(){
+    var nome=nomeAtual(), ok=!!estado[nome];
+    if(nome==='licenca'&&estado.licenca==='parcial') ok=true;
+    document.getElementById('wiz-proximo').disabled=!ok;
+  }
+  function render(){
+    document.querySelectorAll('.passo').forEach(function(el){
+      el.classList.toggle('ativo', +el.dataset.passo===passo);
+    });
+    document.getElementById('barraFill').style.width=((passo-1)/TOTAL*100)+'%';
+    document.getElementById('wiz-voltar').style.visibility = passo===1?'hidden':'visible';
+    document.getElementById('wiz-proximo').textContent = passo===TOTAL?'Ver resultado':'Próximo';
+    validar();
+  }
+  window.proximoPasso=function(){
+    if(passo===1&&estado.servidor==='nao'){ mostrarResultado(); return; }
+    if(passo<TOTAL){ passo++; render(); } else mostrarResultado();
+  };
+  window.voltarPasso=function(){ if(passo>1){ passo--; render(); } };
+  window.reiniciar=function(){
+    passo=1; estado={servidor:null,subsidio:null,adicional:null,licenca:null,licencaMeses:6,pagamento:null};
+    document.querySelectorAll('input[type=radio]').forEach(function(i){ i.checked=false; });
+    document.querySelectorAll('.opcao').forEach(function(o){ o.classList.remove('sel'); });
+    document.getElementById('faixaLicenca').style.display='none';
+    document.getElementById('resultado').style.display='none';
+    document.getElementById('wizard').style.display='block';
+    render();
+  };
+
+  document.querySelectorAll('input[type=radio]').forEach(function(input){
+    input.addEventListener('change',function(){
+      estado[input.name]=input.value;
+      var grupo=input.closest('.opcoes');
+      grupo.querySelectorAll('.opcao').forEach(function(o){ o.classList.remove('sel'); });
+      input.closest('.opcao').classList.add('sel');
+      if(input.name==='licenca'){
+        document.getElementById('faixaLicenca').style.display = input.value==='parcial' ? 'flex' : 'none';
+      }
+      validar();
+    });
+  });
+  var faixa=document.getElementById('licencaMeses');
+  faixa.addEventListener('input',function(){
+    estado.licencaMeses=+faixa.value;
+    document.getElementById('licencaVal').textContent=faixa.value;
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>

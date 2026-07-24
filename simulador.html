@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador de aposentadoria | Ana Paula Amaral Advocacia</title>
+<meta name="description" content="Simulador educativo de aposentadoria do professor efetivo da rede estadual de SP (LC 1.354/2020). Estimativa por idade e tempo, sem coleta de dados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .sim-intro { max-width: 720px; color: var(--graphite); margin-bottom: 8px; }
+  .sim-aviso {
+    max-width: 760px; background: var(--champagne); border-left: 2px solid var(--bronze);
+    padding: 16px 20px; margin: 22px 0 30px; font-size: 13.5px; line-height: 1.65; color: #5a544d;
+  }
+  .sim-aviso b { color: var(--bronze-escuro); }
+  .formulario.sim { max-width: 620px; }
+  .sim-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+  .sim-grid > div { flex: 1; min-width: 240px; }
+  #out { display: none; max-width: 760px; margin-top: 36px; }
+  .cenario {
+    background: var(--white); border: 1px solid var(--champagne); border-left: 4px solid var(--bronze);
+    padding: 18px 20px; margin-bottom: 16px;
+  }
+  .cenario h3 { font-size: 20px; margin-bottom: 8px; color: var(--bronze-escuro); }
+  .cenario .linha { font-size: 15px; line-height: 1.6; margin: 4px 0; color: var(--graphite); }
+  .tag {
+    display: inline-block; font-size: 12px; font-weight: 500; padding: 2px 10px; border-radius: 12px;
+    margin-left: 8px; background: var(--champagne); color: var(--bronze-escuro); vertical-align: middle;
+  }
+  .est-note { font-size: 13px; color: #7a746c; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #d7ccbd; }
+  .cta-sim { margin: 26px 0 4px; }
+  .cta-sim .nota { font-size: 13px; color: #7a746c; margin-top: 12px; max-width: 620px; }
+  .sim-privacidade { font-size: 12.5px; color: #8a847c; margin-top: 30px; max-width: 760px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="monograma.svg" alt="Monograma APA, balança da justiça"></span>
+      <span class="brand-text">Ana Paula Amaral<small>Advocacia · OAB/SP 397.623</small></span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">Início</a>
+      <a href="atuacao.html">Atuação</a>
+      <a href="simulador.html" class="ativo">Simulador</a>
+      <a href="blog.html">Blog</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="secao">
+  <div class="container">
+    <h2>Simulador educativo de aposentadoria</h2>
+    <div class="filete pre-grow"></div>
+
+    <p class="sim-intro">Para o professor(a) efetivo(a) da rede estadual de São Paulo, com base nas regras da LC 1.354/2020. Uma ferramenta para você entender em qual regra pode se enquadrar.</p>
+
+    <div class="sim-aviso">
+      <b>Antes de começar:</b> este é um material <b>educativo</b>, não um cálculo oficial nem uma consulta jurídica. Ele mostra um cenário aproximado a partir apenas da idade e do tempo que você informar. A situação real depende da sua vida funcional completa (tempo averbado, afastamentos, natureza do cargo e do vínculo) e só pode ser confirmada com análise individual. <b>A ferramenta não coleta nem envia nenhum dado — tudo é calculado no seu próprio navegador.</b>
+    </div>
+
+    <form class="formulario sim" onsubmit="return false">
+      <div class="sim-grid">
+        <div>
+          <label for="sexo">Você é</label>
+          <select id="sexo"><option value="F">Mulher</option><option value="M">Homem</option></select>
+        </div>
+        <div>
+          <label for="carreira">Seu vínculo</label>
+          <select id="carreira">
+            <option value="professor">Professor(a) — magistério</option>
+            <option value="geral">Outro cargo efetivo (não magistério)</option>
+          </select>
+        </div>
+      </div>
+      <div class="sim-grid">
+        <div>
+          <label for="nascimento">Data de nascimento</label>
+          <input type="date" id="nascimento">
+        </div>
+        <div>
+          <label for="ingresso">Ingresso no cargo efetivo</label>
+          <input type="date" id="ingresso">
+        </div>
+      </div>
+      <button type="button" class="botao" onclick="simular()">Ver meu cenário estimado</button>
+    </form>
+
+    <div id="out"></div>
+
+    <p class="sim-privacidade">Conteúdo informativo, nos termos do Provimento 205/2021 do CFOAB. Não constitui promessa de resultado. Simulação processada localmente no seu navegador; nenhum dado é coletado ou armazenado.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Ana Paula Amaral de Oliveira · Advocacia</p>
+    <p class="oab">OAB/SP 397.623</p>
+    <div class="canais">
+      <a href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico.">WhatsApp</a>
+      <a href="mailto:anapl.amaral@adv.oabsp.org.br">E-mail</a>
+      <a href="https://anapaulaamaral.adv.br">anapaulaamaral.adv.br</a>
+    </div>
+  </div>
+</footer>
+
+<a class="whats-flutuante" href="https://wa.me/5517997452389?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20atendimento%20jur%C3%ADdico." aria-label="Falar pelo WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#E9DDD1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+  </svg>
+</a>
+
+<script src="interacoes.js" defer></script>
+<script>
+const MS_DIA=86400000, ANO=365.25;
+const CORTE=new Date('2020-03-07'), LIM_INT=new Date('2003-12-31');
+const R={
+  geral:{permanente:{idade:{F:62,M:65},tempo:25},
+    pontos:{idadePre:{F:56,M:61},idadePos:{F:57,M:62},tempo:{F:30,M:35},base:{F:86,M:96},teto:{F:100,M:105}},
+    pedagio:{idade:{F:57,M:60},tempo:{F:30,M:35}}},
+  professor:{permanente:{idade:{F:57,M:60},tempo:25},
+    pontos:{idadePre:{F:51,M:56},idadePos:{F:52,M:57},tempo:{F:25,M:30},base:{F:81,M:91},teto:{F:92,M:100}},
+    pedagio:{idade:{F:52,M:55},tempo:{F:25,M:30}}}
+};
+function addAnos(d,a){return new Date(d.getTime()+a*ANO*MS_DIA);}
+function anos(d1,d2){return (d2-d1)/MS_DIA/ANO;}
+function pontosMin(d,base,teto){return Math.min(base+Math.max(0,d.getFullYear()-2019),teto);}
+function idadeMinP(d,cfg,sx){return d>=new Date('2022-01-01')?cfg.idadePos[sx]:cfg.idadePre[sx];}
+function acharPontos(n,i,cfg,sx){
+  let d=new Date(Math.max(n,i,new Date('2019-01-01')));
+  for(let k=0;k<1400;k++){
+    const id=anos(n,d),tp=anos(i,d),im=idadeMinP(d,cfg.pontos,sx),pm=pontosMin(d,cfg.pontos.base[sx],cfg.pontos.teto[sx]);
+    if(id>=im&&tp>=cfg.pontos.tempo[sx]&&tp>=20&&(id+tp)>=pm)return{data:d,idade:id,tempo:tp};
+    d=new Date(d.getFullYear(),d.getMonth()+1,d.getDate());
+  }
+  return null;
+}
+function pedagio(n,i,cfg,sx){
+  const tCorte=anos(i,CORTE),tMin=cfg.pedagio.tempo[sx];
+  let tTot=tCorte>=tMin?tMin:tCorte+2*(tMin-tCorte);
+  const dT=addAnos(i,tTot),dI=addAnos(n,cfg.pedagio.idade[sx]);
+  const dF=dT>dI?dT:dI;
+  return{data:dF,idade:anos(n,dF),tempo:anos(i,dF)};
+}
+function permanente(n,i,cfg,sx){
+  const dI=addAnos(n,cfg.permanente.idade[sx]),dT=addAnos(i,cfg.permanente.tempo);
+  const dF=dI>dT?dI:dT;
+  return{data:dF,idade:anos(n,dF),tempo:anos(i,dF)};
+}
+function pctMedia(tp){return Math.min(100,60+2*Math.max(0,tp-20));}
+function integral(i){return i<=LIM_INT;}
+function benefTxt(res,i,tipo){
+  if(integral(i)) return "cálculo pela <b>última remuneração</b> (integralidade), se cumpridos os demais requisitos";
+  if(tipo==='flat') return "cálculo por <b>100% da média</b> das suas contribuições";
+  return "cálculo estimado em torno de <b>"+pctMedia(res.tempo).toFixed(0)+"% da média</b> das suas contribuições";
+}
+function cenario(titulo,res,i,tipo){
+  const tag = integral(i)?'<span class="tag">pode ter integralidade</span>':'';
+  return '<div class="cenario"><h3>'+titulo+tag+'</h3>'+
+    '<div class="linha">Cenário estimado: você reuniria os requisitos <b>por volta de '+res.data.getFullYear()+'</b> '+
+    '(cerca de '+res.idade.toFixed(0)+' anos de idade e '+res.tempo.toFixed(0)+' anos de contribuição).</div>'+
+    '<div class="linha">Nesse caso, '+benefTxt(res,i,tipo)+'.</div>'+
+    '<div class="est-note">Estimativa aproximada, sujeita à confirmação da sua vida funcional real.</div></div>';
+}
+function ctaBlock(){
+  return '<div class="cta-sim"><a class="botao" href="contato.html">Agende uma análise da sua vida funcional</a>'+
+    '<p class="nota">A estimativa acima é educativa. Cada caso depende de detalhes que só aparecem na análise individual (tempo averbado, afastamentos, tipo de cargo).</p></div>';
+}
+function simular(){
+  const sx=document.getElementById('sexo').value;
+  const car=document.getElementById('carreira').value;
+  const ns=document.getElementById('nascimento').value;
+  const is=document.getElementById('ingresso').value;
+  const out=document.getElementById('out');
+  if(!ns||!is){alert('Preencha a data de nascimento e a data de ingresso.');return;}
+  const n=new Date(ns),i=new Date(is),cfg=R[car];
+  let html='';
+  if(i>=CORTE){
+    const r=permanente(n,i,cfg,sx);
+    html+='<h3 style="font-size:22px;color:var(--bronze-escuro);margin-bottom:6px;">Seu cenário — regra permanente</h3>'+
+      '<p class="linha" style="color:#6b6560;margin-bottom:16px;">Quem ingressou a partir de 07/03/2020 segue a regra permanente (sem regra de transição).</p>'+
+      cenario('Regra permanente',r,i,'media')+ctaBlock();
+  } else {
+    const rp=acharPontos(n,i,cfg,sx), rd=pedagio(n,i,cfg,sx);
+    html+='<h3 style="font-size:22px;color:var(--bronze-escuro);margin-bottom:6px;">Seus cenários — regras de transição</h3>'+
+      '<p class="linha" style="color:#6b6560;margin-bottom:16px;">Quem já era vinculado ao regime antes de 07/03/2020 pode ter <b>duas</b> portas de transição. Você escolhe a mais vantajosa — vale comparar as duas.</p>';
+    html+= rp ? cenario('Porta 1 — regra de pontos',rp,i,'media')
+              : '<div class="cenario"><h3>Porta 1 — regra de pontos</h3><div class="linha">Com os dados informados, os requisitos se completam mais adiante — a análise individual detalha quando.</div></div>';
+    html+= cenario('Porta 2 — regra de pedágio',rd,i,'flat');
+    html+= ctaBlock();
+  }
+  out.innerHTML=html;
+  out.style.display='block';
+  out.scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+
+</body>
+</html>

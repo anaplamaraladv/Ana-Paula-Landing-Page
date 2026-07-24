@@ -62,7 +62,7 @@
     <p class="sim-intro">Para o professor(a) efetivo(a) da rede estadual de São Paulo, com base nas regras da LC 1.354/2020. Uma ferramenta para você entender em qual regra pode se enquadrar.</p>
 
     <div class="sim-aviso">
-      <b>Antes de começar:</b> este é um material <b>educativo</b>, não um cálculo oficial nem uma consulta jurídica. Ele mostra um cenário aproximado a partir apenas da idade e do tempo que você informar. A situação real depende da sua vida funcional completa (tempo averbado, afastamentos, natureza do cargo e do vínculo) e só pode ser confirmada com análise individual. <b>A ferramenta não coleta nem envia nenhum dado — tudo é calculado no seu próprio navegador.</b>
+      <b>Antes de começar:</b> este é um material <b>educativo</b>, não um cálculo oficial nem uma consulta jurídica. Ele mostra um cenário aproximado a partir apenas da idade e do tempo que você informar. A situação real depende da sua vida funcional completa (tempo averbado, afastamentos, natureza do cargo e do vínculo) e só pode ser confirmada com análise individual. <b>A ferramenta não coleta nem envia nenhum dado: tudo é calculado no seu próprio navegador.</b>
     </div>
 
     <form class="formulario sim" onsubmit="return false">
@@ -74,7 +74,7 @@
         <div>
           <label for="carreira">Seu vínculo</label>
           <select id="carreira">
-            <option value="professor">Professor(a) — magistério</option>
+            <option value="professor">Professor(a) (magistério)</option>
             <option value="geral">Outro cargo efetivo (não magistério)</option>
           </select>
         </div>
@@ -183,16 +183,16 @@ function simular(){
   let html='';
   if(i>=CORTE){
     const r=permanente(n,i,cfg,sx);
-    html+='<h3 style="font-size:22px;color:var(--bronze-escuro);margin-bottom:6px;">Seu cenário — regra permanente</h3>'+
+    html+='<h3 style="font-size:22px;color:var(--bronze-escuro);margin-bottom:6px;">Seu cenário: regra permanente</h3>'+
       '<p class="linha" style="color:#6b6560;margin-bottom:16px;">Quem ingressou a partir de 07/03/2020 segue a regra permanente (sem regra de transição).</p>'+
       cenario('Regra permanente',r,i,'media')+ctaBlock();
   } else {
     const rp=acharPontos(n,i,cfg,sx), rd=pedagio(n,i,cfg,sx);
-    html+='<h3 style="font-size:22px;color:var(--bronze-escuro);margin-bottom:6px;">Seus cenários — regras de transição</h3>'+
-      '<p class="linha" style="color:#6b6560;margin-bottom:16px;">Quem já era vinculado ao regime antes de 07/03/2020 pode ter <b>duas</b> portas de transição. Você escolhe a mais vantajosa — vale comparar as duas.</p>';
-    html+= rp ? cenario('Porta 1 — regra de pontos',rp,i,'media')
-              : '<div class="cenario"><h3>Porta 1 — regra de pontos</h3><div class="linha">Com os dados informados, os requisitos se completam mais adiante — a análise individual detalha quando.</div></div>';
-    html+= cenario('Porta 2 — regra de pedágio',rd,i,'flat');
+    html+='<h3 style="font-size:22px;color:var(--bronze-escuro);margin-bottom:6px;">Seus cenários: regras de transição</h3>'+
+      '<p class="linha" style="color:#6b6560;margin-bottom:16px;">Quem já era vinculado ao regime antes de 07/03/2020 pode ter <b>duas</b> portas de transição. Você escolhe a mais vantajosa. Vale comparar as duas.</p>';
+    html+= rp ? cenario('Porta 1: regra de pontos',rp,i,'media')
+              : '<div class="cenario"><h3>Porta 1: regra de pontos</h3><div class="linha">Com os dados informados, os requisitos se completam mais adiante; a análise individual detalha quando.</div></div>';
+    html+= cenario('Porta 2: regra de pedágio',rd,i,'flat');
     html+= ctaBlock();
   }
   out.innerHTML=html;

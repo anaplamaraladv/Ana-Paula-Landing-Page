@@ -302,6 +302,18 @@ h1, h2, h3 {
 .whats-flutuante:hover { background: var(--bronze); transform: translateY(-2px); }
 .whats-flutuante svg { width: 28px; height: 28px; }
 
+/* Link "voltar ao início" no fim do conteúdo das páginas internas */
+.voltar-secao { padding: 0 0 56px; }
+.voltar-site {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: var(--bronze-escuro);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+.voltar-site:hover { border-bottom-color: var(--bronze); color: var(--bronze); }
+
 @media (max-width: 640px) {
   .site-header .container { justify-content: center; text-align: center; }
   .secao { padding: 46px 0; }

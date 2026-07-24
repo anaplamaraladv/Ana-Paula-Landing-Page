@@ -34,6 +34,14 @@
   .cta-sim { margin: 26px 0 4px; }
   .cta-sim .nota { font-size: 13px; color: #7a746c; margin-top: 12px; max-width: 620px; }
   .sim-privacidade { font-size: 12.5px; color: #8a847c; margin-top: 30px; max-width: 760px; }
+  .sim-acoes { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+  .sim-acoes .botao { margin-top: 0; }
+  .botao-limpar {
+    background: none; border: none; padding: 6px 2px; cursor: pointer;
+    font-family: 'Montserrat', sans-serif; font-size: 14px; color: var(--bronze-escuro);
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .botao-limpar:hover { color: var(--bronze); }
 </style>
 </head>
 <body>
@@ -89,7 +97,10 @@
           <input type="date" id="ingresso">
         </div>
       </div>
-      <button type="button" class="botao" onclick="simular()">Ver meu cenário estimado</button>
+      <div class="sim-acoes">
+        <button type="button" class="botao" onclick="simular()">Ver meu cenário estimado</button>
+        <button type="button" class="botao-limpar" onclick="limpar()">Limpar campos</button>
+      </div>
     </form>
 
     <div id="out"></div>
@@ -171,6 +182,15 @@ function cenario(titulo,res,i,tipo){
 function ctaBlock(){
   return '<div class="cta-sim"><a class="botao" href="contato.html">Agende uma análise da sua vida funcional</a>'+
     '<p class="nota">A estimativa acima é educativa. Cada caso depende de detalhes que só aparecem na análise individual (tempo averbado, afastamentos, tipo de cargo).</p></div>';
+}
+function limpar(){
+  document.getElementById('sexo').value='F';
+  document.getElementById('carreira').value='professor';
+  document.getElementById('nascimento').value='';
+  document.getElementById('ingresso').value='';
+  const out=document.getElementById('out');
+  out.style.display='none'; out.innerHTML='';
+  document.getElementById('nascimento').scrollIntoView({behavior:'smooth',block:'center'});
 }
 function simular(){
   const sx=document.getElementById('sexo').value;

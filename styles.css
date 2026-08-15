@@ -201,6 +201,25 @@ h1, h2, h3 {
   padding-bottom: 2px;
 }
 
+/* ── Post em destaque (home) ── */
+.destaque-post {
+  border-left: 3px solid var(--bronze);
+  padding: 34px 32px;
+  max-width: 640px;
+}
+.destaque-post-tag {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bronze-escuro);
+  margin-bottom: 12px;
+}
+.destaque-post h3 { font-size: 24px; }
+.destaque-post h3 a { color: inherit; }
+.destaque-post h3 a:hover { color: var(--bronze-escuro); }
+
 /* ── Botões ── */
 .botao {
   display: inline-block;

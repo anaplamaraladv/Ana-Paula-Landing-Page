@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anapaulaamaral.adv.br/sitemap.xml
+Sitemap: https://www.anapaulaamaral.adv.br/sitemap.xml
